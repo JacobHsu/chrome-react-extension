@@ -4,6 +4,32 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 `npx create-react-app chrome-react-extension`  
 
+## chrome://extensions/?errors
+
+> Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'unsafe-eval'". Either the 'unsafe-inline' keyword, a hash ('sha256-OszmLM+w39Dhbyhsy44fcN2NAw5A3ARCfaJdO0SiW8o='), or a nonce ('nonce-...') is required to enable inline execution.
+
+create-react-app [创建生产构建](https://www.html.cn/create-react-app/docs/production-build/) 高级配置 [advanced-configuration](https://www.html.cn/create-react-app/docs/advanced-configuration/)
+
+.env
+
+```js
+INLINE_RUNTIME_CHUNK=false
+```
+
+相當於執行 yarn build
+
+package.json (windows不支援寫在package.json scripts內)
+
+```js
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "INLINE_RUNTIME_CHUNK=false react-scripts build",
+  },
+```
+
+[打造你的专属 Chrome 插件（一）](http://jartto.wang/2018/11/10/chrome-extensions-1/)
+增加了INLINE_RUNTIME_CHUNK=false 用來控制打包的js 文件
+
 ## Available Scripts
 
 In the project directory, you can run:
