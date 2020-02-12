@@ -4,6 +4,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 `npx create-react-app chrome-react-extension`  
 
+the problem with our `create-react-setup` is that the build step will generate the output JS file in different name each time (if the content changed).
+
+Ejecting create-react-app and configuring content scripts
+
+`yarn run eject`
+
 ## chrome://extensions/?errors
 
 > Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'unsafe-eval'". Either the 'unsafe-inline' keyword, a hash ('sha256-OszmLM+w39Dhbyhsy44fcN2NAw5A3ARCfaJdO0SiW8o='), or a nonce ('nonce-...') is required to enable inline execution.
