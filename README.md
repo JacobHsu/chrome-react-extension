@@ -6,9 +6,39 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 the problem with our `create-react-setup` is that the build step will generate the output JS file in different name each time (if the content changed).
 
-Ejecting create-react-app and configuring content scripts
+## Ejecting create-react-app and configuring content scripts
 
 `yarn run eject`
+
+go to `[PROJECT_HOME]\config\webpack.config.js`
+
+```js
+entry: {
+    index:[
+        isEnvDevelopment &&
+        require.resolve('react-dev-utils/webpackHotDevClient'),
+        paths.appIndexJs,
+    ].filter(Boolean),
+    popup:[
+        isEnvDevelopment &&
+        require.resolve('react-dev-utils/webpackHotDevClient'),
+        paths.appIndexJs, //'./src/popup.js',
+    ].filter(Boolean)
+    },
+
+    filename: isEnvProduction
+        ? 'static/js/[name].[contenthash:8].js'
+        : isEnvDevelopment && 'static/js/[name].js',
+
+     new ManifestPlugin({
+        // const entrypointFiles = entrypoints.main.filter(
+        //   fileName => !fileName.endsWith('.map')
+        // );
+        return {
+            files: manifestFiles,
+            //entrypoints: entrypointFiles,
+          };
+```
 
 ## chrome://extensions/?errors
 
